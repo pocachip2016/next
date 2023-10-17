@@ -91,7 +91,7 @@ npm start
 
 
 #github
-REDACTED_GHP_TOKEN
+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
 git config --global user.name "pocachip"
 git config --global user.email "parkseou@gmail.com"
 git rm --cached . -rf 
