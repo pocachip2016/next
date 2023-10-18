@@ -3,6 +3,9 @@ REDACTED_GHP_TOKEN
 
 #ngx-admin은 
 nvm ls-remote
+1.install node 14.21.3
+2. rmp run got some error('Server bla bla...')
+3. npm i --save @types/ws@8.5.4
 
 
 
