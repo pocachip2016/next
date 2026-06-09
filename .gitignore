@@ -127,3 +127,4 @@ result*.json
 venv/
 # cron log
 goodlog.txt
+read.md
