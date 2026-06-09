@@ -1,0 +1,32 @@
+[app]
+    name = "rightwatch"
+    addr ="0.0.0.0:5555"
+    secret = "EWZW4y)2_vJ3xFFntG)rx+R+ppBDr@OS"
+    env = "local"
+    log_level = "error"
+    enable_not_found = true
+    enable_swagger = true
+    enable_cors = true
+    enable_sql_log = true
+    enable_https = false
+    enable_cron = false
+    time_zone = "Asia/Seoul"
+    api_prefix = "v1"
+    static_path = "./static/"
+    mem_expire_min = 60
+    mem_max_count = 1024000
+    login_try = 100
+    jwt_expire_hour = 24
+[mysql]
+    addr = "mysql:3306"
+    user = "pocachip"
+    password = "media2015!"
+    database = "rightwatch"
+    charset = "utf8"
+[redis]
+    addr = ""
+    password = ""
+    db_idx = 0
+[init]
+    user_email= ""
+    user_password = ""

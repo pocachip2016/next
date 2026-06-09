@@ -1,0 +1,7 @@
+scrapy>=2.11,<2.12
+Twisted>=22.10,<24
+scrapy-playwright>=0.0.34,<0.0.40
+pymysql>=1.1.0
+mysql-connector-python>=8.0.32
+crawlab-sdk>=0.6.0
+itemadapter>=0.8.0

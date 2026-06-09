@@ -1,0 +1,68 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: next-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: dmscks3927!
+      MYSQL_USER: pocachip
+      MYSQL_PASSWORD: media2015!
+    volumes:
+      - mysql-data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-pdmscks3927!"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  rightwatch:
+    build:
+      context: ./backend/apiServer/rightwatch
+    container_name: next-rightwatch
+    restart: unless-stopped
+    ports:
+      - "5555:5555"
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+  pricemon:
+    build:
+      context: ./backend/apiServer/pricemon
+    container_name: next-pricemon
+    restart: unless-stopped
+    ports:
+      - "5556:5556"
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+  frontend:
+    build:
+      context: ./frontend/ngx-admin2
+    container_name: next-frontend
+    restart: unless-stopped
+    ports:
+      - "4200:4200"
+    depends_on:
+      - rightwatch
+      - pricemon
+
+  crawler:
+    build:
+      context: ./backend/crawler/scrapy
+    container_name: next-crawler
+    restart: unless-stopped
+    environment:
+      - MYSQL_HOST=mysql
+    volumes:
+      - crawler-logs:/var/log
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+volumes:
+  mysql-data:
+  crawler-logs:

@@ -70,7 +70,8 @@ class OndiskSpider(scrapy.Spider):
         yield scrapy.Request(
             url="https://www.ondisk.co.kr/index.php",
             callback=self.parse,
-        )        
+            meta={"playwright": True},
+        )
 
     def parse(self, response):
         #print("set size2:" + str(len(self.ids_seen)))

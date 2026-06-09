@@ -1,0 +1,4 @@
+0 0,12 * * * cd /app/ondisk && scrapy crawl ondisk_update2 -a category=MVO -s MYSQL_HOST=mysql >> /var/log/crawler_MVO.log 2>&1
+0 3,15 * * * cd /app/ondisk && scrapy crawl ondisk_update2 -a category=DRA -s MYSQL_HOST=mysql >> /var/log/crawler_DRA.log 2>&1
+0 6,18 * * * cd /app/ondisk && scrapy crawl ondisk_update2 -a category=MED -s MYSQL_HOST=mysql >> /var/log/crawler_MED.log 2>&1
+0 9,21 * * * cd /app/ondisk && scrapy crawl ondisk_update2 -a category=ANI -s MYSQL_HOST=mysql >> /var/log/crawler_ANI.log 2>&1
