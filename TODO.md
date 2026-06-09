@@ -6,12 +6,13 @@
 <!-- 지금 당장 작업 중인 것. branch: feature/xxx 명시 -->
 
 ## Next (이번 마일스톤)
-- ondisk_spider3 로그인 폼 수정 — ondisk.co.kr 사이트 구조 변경으로 `form[name="loginFrm"]` 미노출, `parse()` 메서드 업데이트 필요
+<!-- 추가 아이템 -->
 
 ## Later (백로그)
 <!-- 언젠가 할 것. 아이디어 포함 -->
 
 ## Done (최근 5개만)
+- ondisk_spider3 로그인 폼 수정 — www.ondisk.co.kr → ondisk.co.kr로 도메인 통일, start_requests + AJAX 4곳 + Host 헤더 모두 무www로 통일 (쿠키 도메인 일관성 보장)
 - pricemon DB 스키마 생성 — content/product/price_list/price_attime 4테이블 (`backend/db_mysql/pricemon_schema.sql`), Docker MySQL 적용 + API 4종 조회 검증
 - Docker 전체 스택 구성 (mysql + rightwatch + pricemon + frontend + crawler)
 - Angular 14 프론트엔드 빌드 이슈 해결 (babel/runtime, @types/ws, node-sass)
