@@ -1,45 +1,18 @@
 package tasks
 
-import "fmt"
+import (
+	"github.com/sirupsen/logrus"
+	"github.com/spf13/viper"
+)
 
-//RunTasks you can manage or add your tasks in the function body
-//https://godoc.org/github.com/jasonlvhit/gocron
-//example
+// RunTasks 스케줄 태스크를 등록하고 스케줄러를 시작한다.
+// app.matching_interval_hours (기본 1) 간격으로 증감분 매칭을 실행한다.
 func RunTasks() {
-	// Do jobs with params
-	Every(1).Second().Do(taskWithParams, 1, "hello")
-
-	// Do jobs without params
-	Every(1).Second().Do(task)
-	Every(2).Seconds().Do(task)
-	Every(1).Minute().Do(task)
-	Every(2).Minutes().Do(task)
-	Every(1).Hour().Do(task)
-	Every(2).Hours().Do(task)
-	Every(1).Day().Do(task)
-	Every(2).Days().Do(task)
-
-	// Do jobs on specific weekday
-	Every(1).Monday().Do(task)
-	Every(1).Thursday().Do(task)
-
-	// function At() take a string like 'hour:min'
-	Every(1).Day().At("10:30").Do(task)
-	Every(1).Monday().At("18:30").Do(task)
-
-	// remove, clear and next_run
-	_, time := NextRun()
-	fmt.Println(time)
-
-	// Remove(task)
-	// Clear()
-
-	// function Start start all the pending jobs
+	interval := uint64(viper.GetInt("app.matching_interval_hours"))
+	if interval == 0 {
+		interval = 1
+	}
+	logrus.Infof("MatchingTask scheduled every %d hour(s)", interval)
+	Every(interval).Hours().Do(MatchingTask)
 	<-Start()
-
-	// also , you can create a your new scheduler,
-	// to run two scheduler concurrently
-	s := NewScheduler()
-	s.Every(3).Seconds().Do(task)
-	<-s.Start()
 }

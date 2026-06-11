@@ -3,6 +3,7 @@ package matcher
 import (
 	"fmt"
 	"strings"
+	"time"
 
 	"github.com/jinzhu/gorm"
 	"rightwatch/models"
@@ -73,23 +74,11 @@ func matchExpanded(text string, expanded [][]string) bool {
 	return true
 }
 
-// RunMatching matches all posts against all kta_contents using normalized title + synonyms.
-// Returns new matches not already present in check_list.
-// DB writes are left to the caller (handler).
-func RunMatching(db *gorm.DB) ([]MatchResult, error) {
+// runMatchingWithPosts is the core matching loop shared by RunMatching, RunMatchingSince, RunMatchingForContent.
+func runMatchingWithPosts(db *gorm.DB, contents []models.KtaContent, posts []models.Post) ([]MatchResult, error) {
 	sm, err := loadSynonymMap(db)
 	if err != nil {
 		return nil, fmt.Errorf("loadSynonymMap: %w", err)
-	}
-
-	var contents []models.KtaContent
-	if err := db.Find(&contents).Error; err != nil {
-		return nil, fmt.Errorf("load kta_contents: %w", err)
-	}
-
-	var posts []models.Post
-	if err := db.Find(&posts).Error; err != nil {
-		return nil, fmt.Errorf("load posts: %w", err)
 	}
 
 	var existing []models.CheckList
@@ -108,7 +97,6 @@ func RunMatching(db *gorm.DB) ([]MatchResult, error) {
 			continue
 		}
 		expanded := ExpandWithSynonyms(tokens, sm)
-
 		for _, post := range posts {
 			postNorm := services.Normalize(post.Txt)
 			if !matchExpanded(postNorm, expanded) {
@@ -128,4 +116,49 @@ func RunMatching(db *gorm.DB) ([]MatchResult, error) {
 		}
 	}
 	return results, nil
+}
+
+// RunMatching matches all posts against all kta_contents.
+func RunMatching(db *gorm.DB) ([]MatchResult, error) {
+	var contents []models.KtaContent
+	if err := db.Find(&contents).Error; err != nil {
+		return nil, fmt.Errorf("load kta_contents: %w", err)
+	}
+	var posts []models.Post
+	if err := db.Find(&posts).Error; err != nil {
+		return nil, fmt.Errorf("load posts: %w", err)
+	}
+	return runMatchingWithPosts(db, contents, posts)
+}
+
+// RunMatchingSince matches only posts updated on or after since against all kta_contents.
+// If since is zero, falls back to a full scan (same as RunMatching).
+func RunMatchingSince(db *gorm.DB, since time.Time) ([]MatchResult, error) {
+	var contents []models.KtaContent
+	if err := db.Find(&contents).Error; err != nil {
+		return nil, fmt.Errorf("load kta_contents: %w", err)
+	}
+	var posts []models.Post
+	q := db
+	if !since.IsZero() {
+		q = db.Where("last_update >= ?", since.Format("2006-01-02 15:04:05"))
+	}
+	if err := q.Find(&posts).Error; err != nil {
+		return nil, fmt.Errorf("load posts: %w", err)
+	}
+	return runMatchingWithPosts(db, contents, posts)
+}
+
+// RunMatchingForContent matches all posts against a single kta_content (full scan).
+// Used when a new content is registered and needs immediate detection.
+func RunMatchingForContent(db *gorm.DB, contentID uint) ([]MatchResult, error) {
+	var content models.KtaContent
+	if db.First(&content, contentID).RecordNotFound() {
+		return nil, fmt.Errorf("content %d not found", contentID)
+	}
+	var posts []models.Post
+	if err := db.Find(&posts).Error; err != nil {
+		return nil, fmt.Errorf("load posts: %w", err)
+	}
+	return runMatchingWithPosts(db, []models.KtaContent{content}, posts)
 }

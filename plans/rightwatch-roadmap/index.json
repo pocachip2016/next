@@ -62,8 +62,9 @@
     {
       "id": "M4",
       "title": "스케줄러 + 검색기반 탐지",
-      "status": "pending",
-      "summary": null,
+      "status": "completed",
+      "summary": "증감분 매칭 스케줄러 + crawler_job 이력 관리 + RunMatchingForContent 신규 콘텐츠 탐지",
+      "completed_at": "2026-06-11T11:30:00+09:00",
       "description": "콘텐츠 갱신주기 기반 스케줄 + 검색 크롤링",
       "github_issue": null
     },
