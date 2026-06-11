@@ -106,9 +106,9 @@ TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
 FEED_EXPORT_ENCODING = "utf-8"
 
 # Set mysql for cache control //don't scrapy if if already has...
-#MYSQL_HOST = "127.0.0.1"
-MYSQL_HOST = "localhost"
-MYSQL_USER = "pocachip"
-MYSQL_PASSWORD = "media2015!"
-MYSQL_DATABASE = "rightwatch"
-MYSQL_TABLE =  "post"
+import os
+MYSQL_HOST     = os.environ.get('MYSQL_HOST', 'localhost')
+MYSQL_USER     = os.environ.get('MYSQL_USER', 'pocachip')
+MYSQL_PASSWORD = os.environ.get('MYSQL_PASSWORD', '')
+MYSQL_DATABASE = os.environ.get('MYSQL_DATABASE', 'rightwatch')
+MYSQL_TABLE    = os.environ.get('MYSQL_TABLE', 'post')

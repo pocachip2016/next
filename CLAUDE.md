@@ -1,14 +1,16 @@
 @../CLAUDE.md
 
 ## Purpose
-next — (한 줄로 목적을 써주세요)
+rightwatch — 웹하드 불법 VOD 모니터링 플랫폼. 게시판 크롤 → 매칭 → CP별 취합 → 삭제 알람.
 
 ## Stack
-(예: Python 3.12 + FastAPI + Postgres, Next.js 15 + TypeScript 등)
+- **Backend**: Go 1.21 (Gin) + Python 3.11 (Scrapy) + MySQL 8.0
+- **Frontend**: Angular 14 + ngx-admin
+- **Infra**: Docker Compose, supercronic
 
 ## Active Work
-- Branch: main
-- (현재 진행 중인 feature 브랜치가 생기면 여기에 기록)
+- Branch: chore/rightwatch-m0-hygiene
+- **M0 단계**: 보안 위생 + 문서화 (진행 중)
 
 ## Where to look
 - 상세 TODO: `@TODO.md`

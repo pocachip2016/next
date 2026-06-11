@@ -1,0 +1,93 @@
+{
+  "title": "rightwatch 로드맵",
+  "description": "웹하드 불법 VOD 모니터링 플랫폼 전체 구현 계획",
+  "milestone": "M0~M7",
+  "steps": [
+    {
+      "id": "M0-1",
+      "title": "보안 위생 — 시크릿 제거",
+      "status": "completed",
+      "summary": "read.md 시크릿(토큰/비밀번호) 제거 후 dev-notes.md로 이전, .read.md.swp 삭제",
+      "completed_at": "2026-06-11T00:00:00+09:00",
+      "github_issue": null
+    },
+    {
+      "id": "M0-2",
+      "title": "시크릿 외부화",
+      "status": "completed",
+      "summary": "docker-compose.yml 환경변수 변수화 (.env 기반), 하드코딩 비밀번호 제거",
+      "completed_at": "2026-06-11T00:00:00+09:00",
+      "github_issue": null
+    },
+    {
+      "id": "M0-3",
+      "title": "문서 작성 (PRD/ARCHITECTURE/ADR)",
+      "status": "pending",
+      "summary": null,
+      "github_issue": null
+    },
+    {
+      "id": "M0-4",
+      "title": "TODO + plans 로드맵 확정",
+      "status": "pending",
+      "summary": null,
+      "github_issue": null
+    },
+    {
+      "id": "M1",
+      "title": "도메인 모델 정리",
+      "status": "pending",
+      "summary": null,
+      "description": "CP 모델 도입, kta_contents 정규화, 앱 config 외부화",
+      "github_issue": null
+    },
+    {
+      "id": "M2",
+      "title": "매칭 엔진 (핵심)",
+      "status": "pending",
+      "summary": null,
+      "description": "제목 정규화 + synonym 매칭 + check_list 자동 적재",
+      "github_issue": null
+    },
+    {
+      "id": "M3",
+      "title": "변형 패턴 탐지",
+      "status": "pending",
+      "summary": null,
+      "description": "자모분해 + homoglyph 정규화 + 변형 사전",
+      "github_issue": null
+    },
+    {
+      "id": "M4",
+      "title": "스케줄러 + 검색기반 탐지",
+      "status": "pending",
+      "summary": null,
+      "description": "콘텐츠 갱신주기 기반 스케줄 + 검색 크롤링",
+      "github_issue": null
+    },
+    {
+      "id": "M5",
+      "title": "CP 대시보드",
+      "status": "pending",
+      "summary": null,
+      "description": "CP별 집계 API + Angular 리포트 UI",
+      "github_issue": null
+    },
+    {
+      "id": "M6",
+      "title": "알람 + 삭제 추적",
+      "status": "pending",
+      "summary": null,
+      "description": "상태 머신 + SMTP 메일 발송",
+      "github_issue": null
+    },
+    {
+      "id": "M7",
+      "title": "심화 검증 (선택)",
+      "status": "pending",
+      "summary": null,
+      "description": "이미지 캡처/해시 + (선택) 영상DNA",
+      "github_issue": null
+    }
+  ]
+}

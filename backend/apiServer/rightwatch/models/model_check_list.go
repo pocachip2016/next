@@ -10,7 +10,7 @@ var _ = time.Thursday
 //CheckList
 type CheckList struct {
 	Id         uint       `gorm:"column:id" form:"id" json:"id" comment:"" sql:"int,PRI"`
-	ContentId  string     `gorm:"column:content_id" form:"content_id" json:"content_id" comment:"" sql:"varchar(256),MUL"`
+	ContentId  uint       `gorm:"column:content_id" form:"content_id" json:"content_id" comment:"" sql:"int,MUL"`
 	PostId     string     `gorm:"column:post_id" form:"post_id" json:"post_id" comment:"" sql:"varchar(256)"`
 	PostIdx    string     `gorm:"column:post_idx" form:"post_idx" json:"post_idx" comment:"" sql:"varchar(256)"`
 	PostTxt    string     `gorm:"column:post_txt" form:"post_txt" json:"post_txt" comment:"" sql:"varchar(256)"`
