@@ -3,20 +3,14 @@
 > **세션 재개 프롬프트**: "TODO.md 확인하고 `## Now`부터 이어서 진행해"
 
 ## Now (진행 중, 1~3개)
-- **M5**: CP 대시보드 (branch: `chore/rightwatch-m0-hygiene`)
-  - [ ] **M5-1** — CP별 집계 API (탐지 건수/삭제율/웹하드별 분포)
-  - [ ] **M5-2** — Angular rightwatch 페이지 (content-panel → check 결과 표시)
-  - [ ] **M5-3** — CP별 리포트 생성/다운로드
+- **M6**: 알람 + 삭제 추적
 
 ## Next (이번 마일스톤)
-- **M6**: 알람 + 삭제 추적
 - **M7** (선택): 심화 검증
 
 ## Later (백로그)
-- **M5**: CP 대시보드
-  - CP별 집계 API (탐지 건수/삭제율/웹하드별 분포)
-  - Angular rightwatch 페이지 (content-panel → check 결과 표시)
-  - CP별 리포트 생성/다운로드
+- **M5-3**: CP별 리포트 생성/다운로드 (CSV 다운로드)
+
   
 - **M6**: 알람 + 삭제 추적
   - 상태 머신 (탐지 → 승인 대기 → 통보 → 삭제확인 → 종결)
@@ -34,6 +28,7 @@
   - 멀티 웹하드 통합 매칭
 
 ## Done (최근 5개만)
+- **M5**: CP 대시보드 — GET /api/cp/dashboard + Angular CpDashboardComponent (M5-3 리포트는 Later)
 - **M4**: 스케줄러 + 검색기반 탐지 — RunMatchingSince(증감분), RunMatchingForContent(신규콘텐츠), crawler_job 이력
 - **M3**: 변형 패턴 탐지 — homoglyph_map DB + SetHomoglyphMap/NormalizeHomoglyph + 단위 테스트 4종
 - **M2**: 매칭 엔진 — normalize/matcher 패키지, POST /matching/run, GET /matching/status, GetDB()

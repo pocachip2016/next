@@ -43,7 +43,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
       {
         title: 'Content Check Dashboard',
         link: '/pages/rightwatch/check-panel',
-      }
+      },
+      {
+        title: 'CP Dashboard',
+        link: '/pages/rightwatch/cp-dashboard',
+      },
     ],
   },
   {

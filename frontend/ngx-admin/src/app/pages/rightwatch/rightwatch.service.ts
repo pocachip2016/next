@@ -21,10 +21,28 @@ export interface IContentDetail {
   update_time : string;
 }
 
+export interface ICpWebhardEntry {
+  website: number;
+  count: number;
+}
+
+export interface ICpDashboardItem {
+  cp_id: number;
+  cp_name: string;
+  detected: number;
+  by_webhard: ICpWebhardEntry[];
+}
+
 @Injectable()
 export class RightwatchService {
 
+  private baseUrl = 'http://127.0.0.1:5555/api/v1';
+
   constructor(private http: HttpClient) {}
+
+  getCpDashboard(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/cp/dashboard`);
+  }
 
   getData(url: string): Observable<IApiData>{
     //console.log("getData.....")

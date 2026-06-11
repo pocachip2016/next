@@ -71,8 +71,9 @@
     {
       "id": "M5",
       "title": "CP 대시보드",
-      "status": "pending",
-      "summary": null,
+      "status": "completed",
+      "summary": "GET /api/cp/dashboard 집계 API (CP별 탐지건수+웹하드분포) + Angular CpDashboardComponent (ngx-admin2) + 메뉴/라우팅 연결",
+      "completed_at": "2026-06-11T17:15:00+09:00",
       "description": "CP별 집계 API + Angular 리포트 UI",
       "github_issue": null
     },
