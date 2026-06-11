@@ -3,24 +3,23 @@
 > **세션 재개 프롬프트**: "TODO.md 확인하고 `## Now`부터 이어서 진행해"
 
 ## Now (진행 중, 1~3개)
-- **M0-1/2/3**: 보안 위생 + 문서화 (branch: `chore/rightwatch-m0-hygiene`)
-  - [x] **M0-1** — read.md 시크릿 제거 + dev-notes.md 이전
-  - [x] **M0-2** — docker-compose 환경변수 외부화 (`.env`)
-  - [ ] **M0-3** — 문서 작성 (PRD/ARCHITECTURE/ADR)
-  - [ ] **M0-4** — TODO/plans 로드맵 확정
+- **M2**: 매칭 엔진 (핵심 기능) (branch: `chore/rightwatch-m0-hygiene`)
+  - [x] **M2-1** — check_list 스키마 정정 (content_id varchar → int)
+  - [x] **M2-2** — 정규화 패키지 (normalize.go)
+  - [x] **M2-3** — 매칭 알고리즘 (matching.go, loadSynonymMap, expandWithSynonyms)
+  - [x] **M2-4** — 매칭 API 엔드포인트 (handler_matching.go: POST /matching/run, GET /matching/status)
+  - [x] **M2-5** — db.go GetDB() 공개 접근자 추가
 
 ## Next (이번 마일스톤)
-- **M1**: 도메인 모델 정리
-  - CP 개념 도입 (모델/API)
-  - `kta_contents` vs `contents_list` 중복 정리
-  - ondisk 로그인 자격증명 외부화 (settings.py)
+- **M3**: 변형 패턴 탐지
+  - homoglyph 정규화 (O/0, l/1, ㅇ/0, etc)
+  - 변형 사전 DB 확장
+  - 탐지 정확도 테스트
   
-- **M2**: 매칭 엔진 (핵심 기능)
-  - 제목 정규화 (한글 자모분해 + 공백/특수문자)
-  - synonym_words 사전 확장
-  - post ↔ kta_contents 매칭 알고리즘
-  - check_list 자동 적재
-  - API endpoint: POST `/matching/check` 
+- **M4**: 스케줄러 + 검색기반 탐지
+  - 콘텐츠 갱신주기 기반 매칭 스케줄
+  - 검색 기반 신규 콘텐츠 탐지
+  - crawler_job 상태 관리 (시작/종료/결과) 
 
 ## Later (백로그)
 - **M3**: 변형 패턴 탐지
@@ -54,8 +53,8 @@
   - 멀티 웹하드 통합 매칭
 
 ## Done (최근 5개만)
-- ondisk_spider3 로그인 폼 수정 — www.ondisk.co.kr → ondisk.co.kr로 도메인 통일, start_requests + AJAX 4곳 + Host 헤더 모두 무www로 통일 (쿠키 도메인 일관성 보장)
-- pricemon DB 스키마 생성 — content/product/price_list/price_attime 4테이블 (`backend/db_mysql/pricemon_schema.sql`), Docker MySQL 적용 + API 4종 조회 검증
+- **M1**: 도메인 모델 정리 완료 — CP 테이블/API 추가, kta_contents cp_id FK, contents_list 레거시 API 제거, Scrapy 환경변수 외부화
+- **M0**: 보안/문서화 완료 — read.md 시크릿 제거, docker-compose 환경변수 외부화 (.env), PRD/ARCHITECTURE/ADR 작성, 로드맵 확정 (M0~M7)
+- ondisk_spider3 로그인 폼 수정 — www.ondisk.co.kr → ondisk.co.kr로 도메인 통일, start_requests + AJAX 4곳 + Host 헤더 모두 무www로 통일
+- pricemon DB 스키마 생성 — content/product/price_list/price_attime 4테이블, Docker MySQL 적용 + API 4종 조회 검증
 - Docker 전체 스택 구성 (mysql + rightwatch + pricemon + frontend + crawler)
-- Angular 14 프론트엔드 빌드 이슈 해결 (babel/runtime, @types/ws, node-sass)
-- supercronic 크론 스케줄러 등록 (4개 카테고리 12h 간격)

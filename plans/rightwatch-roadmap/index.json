@@ -44,16 +44,18 @@
     {
       "id": "M2",
       "title": "매칭 엔진 (핵심)",
-      "status": "pending",
-      "summary": null,
+      "status": "completed",
+      "summary": "synonym 기반 매칭 엔진 구현 (loadSynonymMap/expandWithSynonyms/RunMatching) + GetDB 공개 접근자",
+      "completed_at": "2026-06-11T00:00:00+09:00",
       "description": "제목 정규화 + synonym 매칭 + check_list 자동 적재",
       "github_issue": null
     },
     {
       "id": "M3",
       "title": "변형 패턴 탐지",
-      "status": "pending",
-      "summary": null,
+      "status": "completed",
+      "summary": "homoglyph_map DB 테이블 + 정규화 파이프라인 통합 (SetHomoglyphMap/NormalizeHomoglyph) + 단위 테스트 4종",
+      "completed_at": "2026-06-11T11:00:00+09:00",
       "description": "자모분해 + homoglyph 정규화 + 변형 사전",
       "github_issue": null
     },
