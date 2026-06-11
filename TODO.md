@@ -3,7 +3,13 @@
 > **세션 재개 프롬프트**: "TODO.md 확인하고 `## Now`부터 이어서 진행해"
 
 ## Now (진행 중, 1~3개)
-- **M6**: 알람 + 삭제 추적
+- **M6**: 알람 + 삭제 추적 (Step1 완료 — Step2~6 진행 중)
+  - [x] Step1: status-model (상수 + 타임스탬프 + notification_log)
+  - [x] Step2: state-service (AllowedTransition + 단위 테스트)
+  - [ ] Step3: mailer (SMTP + dry-run 폴백)
+  - [ ] Step4: status-api (전이 엔드포인트 + 통보 트리거)
+  - [ ] Step5: deletion-task (재크롤 삭제 자동 판정)
+  - [ ] Step6: frontend-status-panel (Angular UI)
 
 ## Next (이번 마일스톤)
 - **M7** (선택): 심화 검증
