@@ -33,6 +33,17 @@ export interface ICpDashboardItem {
   by_webhard: ICpWebhardEntry[];
 }
 
+export interface ICheckListItem {
+  id: number;
+  post_txt: string;
+  post_idx: string;
+  status: number;
+  notified_at?: string;
+  delete_confirmed_at?: string;
+  closed_at?: string;
+  loadingAction?: boolean;
+}
+
 @Injectable()
 export class RightwatchService {
 
@@ -42,6 +53,18 @@ export class RightwatchService {
 
   getCpDashboard(): Observable<any> {
     return this.http.get(`${this.baseUrl}/cp/dashboard`);
+  }
+
+  getCheckList(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/check-list?limit=100&offset=0`);
+  }
+
+  transition(id: number, from: number, to: number): Observable<any> {
+    return this.http.post(`${this.baseUrl}/check-list/${id}/transition`, { from, to });
+  }
+
+  confirmDeletion(id: number): Observable<any> {
+    return this.http.post(`${this.baseUrl}/check-list/${id}/confirm-deletion`, {});
   }
 
   getData(url: string): Observable<IApiData>{

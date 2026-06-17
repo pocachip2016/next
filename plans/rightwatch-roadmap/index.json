@@ -80,8 +80,9 @@
     {
       "id": "M6",
       "title": "알람 + 삭제 추적",
-      "status": "pending",
-      "summary": null,
+      "status": "completed",
+      "summary": "check_list 상태 머신(0→1→2→3) + SMTP dry-run 메일러 + /transition·/confirm-deletion API + Angular StatusPanelComponent (ngx-admin/ngx-admin2) + DB 스키마 보강(kta_contents/synonym_words/crawler_job/screenshots)",
+      "completed_at": "2026-06-18T00:00:00+09:00",
       "description": "상태 머신 + SMTP 메일 발송",
       "github_issue": null
     },

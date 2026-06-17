@@ -66,6 +66,10 @@ export const MENU_ITEMS: NbMenuItem[] = [
         title: 'CP Dashboard',
         link: '/pages/rightwatch/cp-dashboard',
       },
+      {
+        title: 'Status Panel',
+        link: '/pages/rightwatch/status-panel',
+      },
     ],
   },
   {

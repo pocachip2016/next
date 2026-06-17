@@ -3,37 +3,24 @@
 > **세션 재개 프롬프트**: "TODO.md 확인하고 `## Now`부터 이어서 진행해"
 
 ## Now (진행 중, 1~3개)
-- **M6**: 알람 + 삭제 추적 (Step1 완료 — Step2~6 진행 중)
-  - [x] Step1: status-model (상수 + 타임스탬프 + notification_log)
-  - [x] Step2: state-service (AllowedTransition + 단위 테스트)
-  - [ ] Step3: mailer (SMTP + dry-run 폴백)
-  - [ ] Step4: status-api (전이 엔드포인트 + 통보 트리거)
-  - [ ] Step5: deletion-task (재크롤 삭제 자동 판정)
-  - [ ] Step6: frontend-status-panel (Angular UI)
+- **M7** (선택): 심화 검증 — 상세 이미지 캡처 + 해시 유사도
 
 ## Next (이번 마일스톤)
-- **M7** (선택): 심화 검증
+- (없음)
 
 ## Later (백로그)
 - **M5-3**: CP별 리포트 생성/다운로드 (CSV 다운로드)
-
-  
-- **M6**: 알람 + 삭제 추적
-  - 상태 머신 (탐지 → 승인 대기 → 통보 → 삭제확인 → 종결)
-  - SMTP 메일 발송 (CP에게 탐지 통보)
-  - 삭제 여부 재확인 flow
-  
 - **M7** (선택): 심화 검증
   - 상세 이미지 캡처 (playwright)
   - 해시 기반 이미지 유사도
   - (선택) 영상 DNA 검증
-  
 - **확장**: 다수 웹하드 지원
   - filesun 스파이더 완성
   - 추가 웹하드 spider 플러그인화
   - 멀티 웹하드 통합 매칭
 
 ## Done (최근 5개만)
+- **M6**: 알람 + 삭제 추적 — check_list 상태 머신(0~3) + SMTP dry-run 메일러 + /transition·/confirm-deletion API + Angular StatusPanelComponent + DB 스키마 보강(kta_contents/synonym_words 등)
 - **M5**: CP 대시보드 — GET /api/cp/dashboard + Angular CpDashboardComponent (M5-3 리포트는 Later)
 - **M4**: 스케줄러 + 검색기반 탐지 — RunMatchingSince(증감분), RunMatchingForContent(신규콘텐츠), crawler_job 이력
 - **M3**: 변형 패턴 탐지 — homoglyph_map DB + SetHomoglyphMap/NormalizeHomoglyph + 단위 테스트 4종

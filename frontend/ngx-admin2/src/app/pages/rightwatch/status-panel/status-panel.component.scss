@@ -1,0 +1,76 @@
+.loading {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.error {
+  color: nb-theme(color-danger-default);
+  padding: 1rem 0;
+}
+
+.empty {
+  color: nb-theme(text-hint-color);
+  padding: 1rem 0;
+}
+
+.status-table {
+  width: 100%;
+  border-collapse: collapse;
+
+  th, td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid nb-theme(border-basic-color-3);
+    text-align: left;
+  }
+
+  th {
+    font-weight: 600;
+    color: nb-theme(text-hint-color);
+    font-size: 0.875rem;
+    text-transform: uppercase;
+  }
+
+  .post-txt {
+    max-width: 280px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+.result-row td {
+  border-bottom: none;
+  padding-top: 0;
+}
+
+.result-msg {
+  font-size: 0.85rem;
+  color: nb-theme(color-success-default);
+  padding-left: 1rem;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 600;
+
+  &.status-warning {
+    background: nb-theme(color-warning-transparent-default);
+    color: nb-theme(color-warning-default);
+  }
+  &.status-info {
+    background: nb-theme(color-info-transparent-default);
+    color: nb-theme(color-info-default);
+  }
+  &.status-success {
+    background: nb-theme(color-success-transparent-default);
+    color: nb-theme(color-success-default);
+  }
+  &.status-basic {
+    background: nb-theme(background-basic-color-3);
+    color: nb-theme(text-hint-color);
+  }
+}

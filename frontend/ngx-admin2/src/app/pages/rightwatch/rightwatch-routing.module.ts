@@ -10,6 +10,7 @@ import { CheckListDetailComponent } from './check-panel/check-list-detail/check-
 import { CheckPanelComponent } from './check-panel/check-panel.component'
 import { ContentPanelComponent } from './content-panel/content-panel.component';
 import { CpDashboardComponent } from './cp-dashboard/cp-dashboard.component';
+import { StatusPanelComponent } from './status-panel/status-panel.component';
 
 const routes: Routes = [{
   path: '',
@@ -46,6 +47,10 @@ const routes: Routes = [{
     {
       path: 'cp-dashboard',
       component: CpDashboardComponent,
+    },
+    {
+      path: 'status-panel',
+      component: StatusPanelComponent,
     },
   ],
 }];

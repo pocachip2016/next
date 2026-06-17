@@ -28,6 +28,13 @@
     password = ""
     db_idx = 0
 
+[smtp]
+    host = ""           # eg: smtp.gmail.com — empty string falls back to dry-run (no actual send)
+    port = 587          # STARTTLS submission port
+    username = ""
+    password = ""
+    from = ""           # sender address — empty falls back to username
+
 
 # the init config has not impelement yet
 [init]

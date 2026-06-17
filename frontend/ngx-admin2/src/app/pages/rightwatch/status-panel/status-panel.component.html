@@ -1,0 +1,56 @@
+<nb-card>
+  <nb-card-header>
+    상태 관리 패널
+    <button nbButton size="small" status="basic" (click)="refresh()" style="float:right">새로고침</button>
+  </nb-card-header>
+  <nb-card-body>
+
+    <div *ngIf="loading" class="loading">
+      <nb-spinner status="primary"></nb-spinner>
+    </div>
+
+    <div *ngIf="error" class="error">{{ error }}</div>
+
+    <div *ngIf="!loading && !error">
+      <div *ngIf="items.length === 0" class="empty">탐지 데이터가 없습니다.</div>
+
+      <table *ngIf="items.length > 0" class="status-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>게시물 제목</th>
+            <th>상태</th>
+            <th>액션</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let item of items">
+            <tr>
+              <td>{{ item.id }}</td>
+              <td class="post-txt" [title]="item.post_txt">{{ item.post_txt }}</td>
+              <td>
+                <span [class]="'status-badge ' + statusClass(item.status)">
+                  {{ statusLabel(item.status) }}
+                </span>
+              </td>
+              <td>
+                <button
+                  *ngIf="actionLabel(item.status)"
+                  nbButton size="small"
+                  [status]="item.status === 0 ? 'warning' : item.status === 1 ? 'info' : 'success'"
+                  [disabled]="item.loadingAction"
+                  (click)="performAction(item)"
+                >{{ actionLabel(item.status) }}</button>
+                <span *ngIf="!actionLabel(item.status)">—</span>
+              </td>
+            </tr>
+            <tr *ngIf="results[item.id]" class="result-row">
+              <td colspan="4" class="result-msg">✓ {{ results[item.id] }}</td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+
+  </nb-card-body>
+</nb-card>
