@@ -21,10 +21,51 @@ export interface IContentDetail {
   update_time : string;
 }
 
+export interface ICpWebhardEntry {
+  website: number;
+  count: number;
+}
+
+export interface ICpDashboardItem {
+  cp_id: number;
+  cp_name: string;
+  detected: number;
+  by_webhard: ICpWebhardEntry[];
+}
+
+export interface ICheckListItem {
+  id: number;
+  post_txt: string;
+  post_idx: string;
+  status: number;
+  notified_at?: string;
+  delete_confirmed_at?: string;
+  closed_at?: string;
+  loadingAction?: boolean;
+}
+
 @Injectable()
 export class RightwatchService {
 
+  private baseUrl = 'http://127.0.0.1:5555/api/v1';
+
   constructor(private http: HttpClient) {}
+
+  getCpDashboard(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/cp/dashboard`);
+  }
+
+  getCheckList(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/check-list?limit=100&offset=0`);
+  }
+
+  transition(id: number, from: number, to: number): Observable<any> {
+    return this.http.post(`${this.baseUrl}/check-list/${id}/transition`, { from, to });
+  }
+
+  confirmDeletion(id: number): Observable<any> {
+    return this.http.post(`${this.baseUrl}/check-list/${id}/confirm-deletion`, {});
+  }
 
   getData(url: string): Observable<IApiData>{
     //console.log("getData.....")

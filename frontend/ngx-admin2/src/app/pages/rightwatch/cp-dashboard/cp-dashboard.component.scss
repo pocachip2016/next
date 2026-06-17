@@ -1,0 +1,47 @@
+.loading {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.error {
+  color: nb-theme(color-danger-default);
+  padding: 1rem 0;
+}
+
+.empty {
+  color: nb-theme(text-hint-color);
+  padding: 1rem 0;
+}
+
+.cp-table {
+  width: 100%;
+  border-collapse: collapse;
+
+  th, td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid nb-theme(border-basic-color-3);
+    text-align: left;
+  }
+
+  th {
+    font-weight: 600;
+    color: nb-theme(text-hint-color);
+    font-size: 0.875rem;
+    text-transform: uppercase;
+  }
+
+  .detected {
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+}
+
+.webhard-badge {
+  display: inline-block;
+  margin-right: 0.5rem;
+  padding: 0.2rem 0.6rem;
+  background: nb-theme(background-basic-color-3);
+  border-radius: 4px;
+  font-size: 0.8rem;
+}

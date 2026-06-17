@@ -6,16 +6,16 @@ import (
 )
 
 func init() {
-	groupApi.GET("contents-list", contentsListAll)
-	groupApi.GET("contents-list/:id", contentsListOne)
-	groupApi.POST("contents-list", contentsListCreate)
-	groupApi.PATCH("contents-list", contentsListUpdate)
-	groupApi.DELETE("contents-list/:id", contentsListDelete)
+	groupApi.GET("cp", cpAll)
+	groupApi.GET("cp/:id", cpOne)
+	groupApi.POST("cp", cpCreate)
+	groupApi.PATCH("cp", cpUpdate)
+	groupApi.DELETE("cp/:id", cpDelete)
 }
 
-//All
-func contentsListAll(c *gin.Context) {
-	mdl := models.ContentsList{}
+// All 저작권자 전체 조회
+func cpAll(c *gin.Context) {
+	mdl := models.Cp{}
 	query := &models.PaginationQuery{}
 	err := c.ShouldBindQuery(query)
 	if handleError(c, err) {
@@ -28,9 +28,9 @@ func contentsListAll(c *gin.Context) {
 	jsonPagination(c, list, total, query)
 }
 
-//One
-func contentsListOne(c *gin.Context) {
-	var mdl models.ContentsList
+// One 저작권자 단건 조회
+func cpOne(c *gin.Context) {
+	var mdl models.Cp
 	id, err := parseParamID(c)
 	if handleError(c, err) {
 		return
@@ -43,9 +43,9 @@ func contentsListOne(c *gin.Context) {
 	jsonData(c, data)
 }
 
-//Create
-func contentsListCreate(c *gin.Context) {
-	var mdl models.ContentsList
+// Create 저작권자 생성
+func cpCreate(c *gin.Context) {
+	var mdl models.Cp
 	err := c.ShouldBind(&mdl)
 	if handleError(c, err) {
 		return
@@ -57,9 +57,9 @@ func contentsListCreate(c *gin.Context) {
 	jsonData(c, mdl)
 }
 
-//Update
-func contentsListUpdate(c *gin.Context) {
-	var mdl models.ContentsList
+// Update 저작권자 수정
+func cpUpdate(c *gin.Context) {
+	var mdl models.Cp
 	err := c.ShouldBind(&mdl)
 	if handleError(c, err) {
 		return
@@ -71,9 +71,9 @@ func contentsListUpdate(c *gin.Context) {
 	jsonSuccess(c)
 }
 
-//Delete
-func contentsListDelete(c *gin.Context) {
-	var mdl models.ContentsList
+// Delete 저작권자 삭제
+func cpDelete(c *gin.Context) {
+	var mdl models.Cp
 	id, err := parseParamID(c)
 	if handleError(c, err) {
 		return

@@ -9,15 +9,16 @@ var _ = time.Thursday
 
 //KtaContent
 type KtaContent struct {
-	Id       uint   `gorm:"column:id" form:"id" json:"id" comment:"" sql:"int,PRI"`
-	Genre    string `gorm:"column:genre" form:"genre" json:"genre" comment:"" sql:"varchar(256)"`
-	Title    string `gorm:"column:title" form:"title" json:"title" comment:"" sql:"varchar(256)"`
-	Actors   string `gorm:"column:actors" form:"actors" json:"actors" comment:"" sql:"text"`
-	Director string `gorm:"column:director" form:"director" json:"director" comment:"" sql:"varchar(256)"`
-	Price    string `gorm:"column:price" form:"price" json:"price" comment:"" sql:"varchar(256)"`
-	Enddate  string `gorm:"column:enddate" form:"enddate" json:"enddate" comment:"" sql:"varchar(256)"`
-	Synop    string `gorm:"column:synop" form:"synop" json:"synop" comment:"" sql:"text"`
-	PUrl     string `gorm:"column:p_url" form:"p_url" json:"p_url" comment:"" sql:"varchar(256)"`
+	Id       uint    `gorm:"column:id" form:"id" json:"id" comment:"" sql:"int,PRI"`
+	CpId     *uint   `gorm:"column:cp_id" form:"cp_id" json:"cp_id,omitempty" comment:"" sql:"int"`
+	Genre    string  `gorm:"column:genre" form:"genre" json:"genre" comment:"" sql:"varchar(256)"`
+	Title    string  `gorm:"column:title" form:"title" json:"title" comment:"" sql:"varchar(256)"`
+	Actors   string  `gorm:"column:actors" form:"actors" json:"actors" comment:"" sql:"text"`
+	Director string  `gorm:"column:director" form:"director" json:"director" comment:"" sql:"varchar(256)"`
+	Price    string  `gorm:"column:price" form:"price" json:"price" comment:"" sql:"varchar(256)"`
+	Enddate  string  `gorm:"column:enddate" form:"enddate" json:"enddate" comment:"" sql:"varchar(256)"`
+	Synop    string  `gorm:"column:synop" form:"synop" json:"synop" comment:"" sql:"text"`
+	PUrl     string  `gorm:"column:p_url" form:"p_url" json:"p_url" comment:"" sql:"varchar(256)"`
 }
 
 //TableName

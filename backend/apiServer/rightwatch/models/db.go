@@ -52,6 +52,11 @@ func init() {
 
 }
 
+// GetDB returns the shared *gorm.DB for use outside the models package
+func GetDB() *gorm.DB {
+	return mysqlDB
+}
+
 //Close clear db collection
 func Close() {
 	if mysqlDB != nil {

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { NbCardModule, NbIconModule, NbInputModule, NbTreeGridModule } from '@nebular/theme';
+import { NbButtonModule, NbCardModule, NbIconModule, NbInputModule, NbSpinnerModule, NbTreeGridModule } from '@nebular/theme';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 
 import { ThemeModule } from '../../@theme/theme.module';
@@ -11,13 +11,17 @@ import { CheckPanelComponent } from './check-panel/check-panel.component';
 import { ContentDetailComponent } from './content-panel/content-detail/content-detail.component';
 import { ContentPanelComponent } from './content-panel/content-panel.component';
 import { RightwatchService } from './rightwatch.service';
+import { CpDashboardComponent } from './cp-dashboard/cp-dashboard.component';
+import { StatusPanelComponent } from './status-panel/status-panel.component';
 
 @NgModule({
   imports: [
+    NbButtonModule,
     NbCardModule,
     NbTreeGridModule,
     NbIconModule,
     NbInputModule,
+    NbSpinnerModule,
     ThemeModule,
     RightwatchRoutingModule,
     Ng2SmartTableModule,
@@ -30,6 +34,8 @@ import { RightwatchService } from './rightwatch.service';
     CheckPanelComponent,
     ContentDetailComponent,
     ContentPanelComponent,
+    CpDashboardComponent,
+    StatusPanelComponent,
   ],
   providers: [
     RightwatchService,
