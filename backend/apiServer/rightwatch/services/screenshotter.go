@@ -2,6 +2,7 @@ package services
 
 import (
 	"fmt"
+	"os"
 
 	"github.com/playwright-community/playwright-go"
 	"github.com/sirupsen/logrus"
@@ -25,10 +26,14 @@ func CaptureURL(pageURL string, cfg OndiskConfig) ([]byte, error) {
 	}
 	defer pw.Stop()
 
-	browser, err := pw.Chromium.Launch(playwright.BrowserTypeLaunchOptions{
+	launchOpts := playwright.BrowserTypeLaunchOptions{
 		Headless: playwright.Bool(true),
 		Args:     []string{"--no-sandbox", "--disable-dev-shm-usage"},
-	})
+	}
+	if path := os.Getenv("CHROMIUM_PATH"); path != "" {
+		launchOpts.ExecutablePath = playwright.String(path)
+	}
+	browser, err := pw.Chromium.Launch(launchOpts)
 	if err != nil {
 		return nil, fmt.Errorf("chromium launch: %w", err)
 	}
