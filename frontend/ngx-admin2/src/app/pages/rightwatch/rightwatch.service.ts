@@ -44,6 +44,17 @@ export interface ICheckListItem {
   loadingAction?: boolean;
 }
 
+export interface ICapture {
+  id: number;
+  check_list_id: number;
+  capture_type: string;
+  file_path: string;
+  page_url: string;
+  status_at: number;
+  trigger_by: string;
+  captured_at: string;
+}
+
 @Injectable()
 export class RightwatchService {
 
@@ -65,6 +76,14 @@ export class RightwatchService {
 
   confirmDeletion(id: number): Observable<any> {
     return this.http.post(`${this.baseUrl}/check-list/${id}/confirm-deletion`, {});
+  }
+
+  captureCreate(id: number): Observable<any> {
+    return this.http.post(`${this.baseUrl}/check-list/${id}/capture`, { trigger_by: 'manual' });
+  }
+
+  captureList(id: number): Observable<any> {
+    return this.http.get(`${this.baseUrl}/check-list/${id}/captures`);
   }
 
   getData(url: string): Observable<IApiData>{
