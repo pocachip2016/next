@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RightwatchService, ICheckListItem } from '../rightwatch.service';
+import { RightwatchService, ICheckListItem, ICapture } from '../rightwatch.service';
 
 @Component({
   selector: 'ngx-status-panel',
@@ -11,6 +11,13 @@ export class StatusPanelComponent implements OnInit {
   loading = true;
   error = '';
   results: Record<number, string> = {};
+
+  captureLoading: Record<number, boolean> = {};
+  captureMsg: Record<number, string> = {};
+  showCaptures: Record<number, boolean> = {};
+  captures: Record<number, ICapture[]> = {};
+
+  private readonly staticBase = 'http://127.0.0.1:5555/static/captures';
 
   constructor(private service: RightwatchService) {}
 
@@ -65,6 +72,54 @@ export class StatusPanelComponent implements OnInit {
       case 2: return '종결';
       default: return '';
     }
+  }
+
+  captureImage(item: ICheckListItem) {
+    this.captureLoading[item.id] = true;
+    delete this.captureMsg[item.id];
+    this.service.captureCreate(item.id).subscribe({
+      next: (res: any) => {
+        const cap: ICapture = res.data;
+        this.captureMsg[item.id] = '캡처 완료';
+        this.captureLoading[item.id] = false;
+        if (!this.captures[item.id]) {
+          this.captures[item.id] = [];
+        }
+        this.captures[item.id] = [...this.captures[item.id], cap];
+        this.showCaptures[item.id] = true;
+      },
+      error: (e: any) => {
+        this.captureMsg[item.id] = e.error?.msg || e.message || '캡처 실패';
+        this.captureLoading[item.id] = false;
+      },
+    });
+  }
+
+  toggleCaptures(item: ICheckListItem) {
+    const id = item.id;
+    if (this.showCaptures[id]) {
+      this.showCaptures[id] = false;
+      return;
+    }
+    if (this.captures[id]) {
+      this.showCaptures[id] = true;
+      return;
+    }
+    this.captureLoading[id] = true;
+    this.service.captureList(id).subscribe({
+      next: (res: any) => {
+        this.captures[id] = res.data || [];
+        this.showCaptures[id] = true;
+        this.captureLoading[id] = false;
+      },
+      error: () => {
+        this.captureLoading[id] = false;
+      },
+    });
+  }
+
+  captureUrl(cap: ICapture): string {
+    return `${this.staticBase}/${cap.id}.jpg`;
   }
 
   performAction(item: ICheckListItem) {

@@ -50,6 +50,50 @@
   padding-left: 1rem;
 }
 
+.capture-cell {
+  white-space: nowrap;
+
+  button + button {
+    margin-left: 4px;
+  }
+}
+
+.capture-msg {
+  font-size: 0.75rem;
+  color: nb-theme(color-success-default);
+  margin-left: 6px;
+}
+
+.capture-gallery-row td {
+  padding: 0.5rem 1rem 0.75rem;
+  background: nb-theme(background-basic-color-2);
+}
+
+.capture-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.capture-thumb-link {
+  display: block;
+  border: 2px solid transparent;
+  border-radius: 4px;
+  overflow: hidden;
+
+  &:hover {
+    border-color: nb-theme(color-primary-default);
+  }
+}
+
+.capture-thumb {
+  display: block;
+  width: 160px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 2px;
+}
+
 .status-badge {
   display: inline-block;
   padding: 0.2rem 0.6rem;

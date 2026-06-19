@@ -21,6 +21,7 @@
             <th>게시물 제목</th>
             <th>상태</th>
             <th>액션</th>
+            <th>캡처</th>
           </tr>
         </thead>
         <tbody>
@@ -43,9 +44,36 @@
                 >{{ actionLabel(item.status) }}</button>
                 <span *ngIf="!actionLabel(item.status)">—</span>
               </td>
+              <td class="capture-cell">
+                <button nbButton size="tiny" status="basic"
+                  [disabled]="captureLoading[item.id]"
+                  (click)="captureImage(item)"
+                  title="페이지 캡처">
+                  <nb-icon *ngIf="!captureLoading[item.id]" icon="camera-outline"></nb-icon>
+                  <nb-spinner *ngIf="captureLoading[item.id]" size="tiny"></nb-spinner>
+                </button>
+                <button *ngIf="captures[item.id]?.length || showCaptures[item.id]"
+                  nbButton size="tiny" status="info" ghost
+                  (click)="toggleCaptures(item)"
+                  title="이미지 목록">
+                  {{ (captures[item.id]?.length || 0) }}장
+                </button>
+                <span *ngIf="captureMsg[item.id]" class="capture-msg">{{ captureMsg[item.id] }}</span>
+              </td>
             </tr>
             <tr *ngIf="results[item.id]" class="result-row">
-              <td colspan="4" class="result-msg">✓ {{ results[item.id] }}</td>
+              <td colspan="5" class="result-msg">✓ {{ results[item.id] }}</td>
+            </tr>
+            <tr *ngIf="showCaptures[item.id] && captures[item.id]?.length" class="capture-gallery-row">
+              <td colspan="5">
+                <div class="capture-gallery">
+                  <a *ngFor="let cap of captures[item.id]"
+                    [href]="captureUrl(cap)" target="_blank" class="capture-thumb-link"
+                    [title]="cap.captured_at">
+                    <img [src]="captureUrl(cap)" class="capture-thumb" loading="lazy" />
+                  </a>
+                </div>
+              </td>
             </tr>
           </ng-container>
         </tbody>

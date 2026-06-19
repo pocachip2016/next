@@ -27,6 +27,16 @@
     addr = ""
     password = ""
     db_idx = 0
+[smtp]
+    host = ""
+    port = 587
+    username = ""
+    password = ""
+    from = ""
+
+[capture]
+    path = "./static/captures/"
+
 [init]
     user_email= ""
     user_password = ""
